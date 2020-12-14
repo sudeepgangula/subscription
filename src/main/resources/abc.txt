@@ -1,0 +1,7 @@
+INSERT INTO Subscription VALUES (1,1001,2020-06-01,2020-06-01,'ram');  
+INSERT INTO Subscription VALUES (2,1002,2020-06-01,2020-12-01,'ram');    
+INSERT INTO Subscription VALUES (3,1003,2020-06-01,2020-12-01,'rahim');  
+INSERT INTO Subscription VALUES (4,1001,2020-06-01,2020-12-01,'robert');  
+INSERT INTO Subscription VALUES (5,1005,2020-06-01,2020-10-01,'ram');  
+INSERT INTO Subscription VALUES (6,1002,2020-04-01,2020-11-01,'rahim');  
+INSERT INTO Subscription VALUES (7,1004,2020-08-01,2020-12-01,'robert');    
