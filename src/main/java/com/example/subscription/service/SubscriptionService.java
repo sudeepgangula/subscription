@@ -37,11 +37,10 @@ public class SubscriptionService {
 		subscription.setDateSubscribed(LocalDate.now());
 		subscriptionRepository.save(subscription);
 
-		String serviceURL = "http://localhost:8081/books/allocateBook?bookId="+subscription.getBookId();
+		String serviceURL = "http://localhost:8081/allocateBook?bookId=" + subscription.getBookId();
 
-		ResponseEntity<List<Address>> reponseEntity = restTemplate.exchange(serviceURL, HttpMethod.POST, null,
-				new ParameterizedTypeReference<List<Address>>() {
-				});
+		restTemplate.exchange(serviceURL, HttpMethod.POST, null, new ParameterizedTypeReference<List<Address>>() {
+		});
 
 	}
 
@@ -51,19 +50,22 @@ public class SubscriptionService {
 		subscription.setDateReturned(LocalDate.now());
 
 		subscriptionRepository.save(subscription);
-		String serviceURL = "http://localhost:8081/books/deallocateBook?bookId=" + subscription.getBookId();
+		String serviceURL = "http://localhost:8081/deallocateBook?bookId=" + subscription.getBookId();
 
-		ResponseEntity<List<Address>> reponseEntity = restTemplate.exchange(serviceURL, HttpMethod.POST, null,
-				new ParameterizedTypeReference<List<Address>>() {
+		restTemplate.exchange(serviceURL, HttpMethod.POST, null, new ParameterizedTypeReference<List<Address>>() {
 				});
 	}
 
 	public List<Subscription> findBySubscriber(String subscriberName) {
+		if (null != subscriberName) {
 		return subscriptionRepository.findBySubscriberName(subscriberName);
+		} else {
+			return subscriptionRepository.findAll();
+		}
 	}
 
 	public String findAvailableBooks() {
-		String serviceURL = "http://localhost:8081/books/availableBooks";
+		String serviceURL = "http://localhost:8081/availableBooks";
 
 		ResponseEntity<String> reponseEntity = restTemplate.exchange(serviceURL, HttpMethod.GET, null,
 				new ParameterizedTypeReference<String>() {
